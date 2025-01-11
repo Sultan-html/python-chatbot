@@ -1,10 +1,9 @@
-import random
-
 class ChatBot:
     def __init__(self, name):
         self.name = name
         self.moods = ["весёлый", "грустный", "злой", "сонный", "энергичный"]
         self.current_mood = random.choice(self.moods)
+        self.history = []
     
     def greet(self):
         print(f"Привет, {self.name}! Я бот с настроением. У меня сегодня {self.current_mood} настроение.")
@@ -33,3 +32,11 @@ class ChatBot:
 
     def farewell(self):
         return f"Пока, {self.name}! Хорошего дня!"
+    
+    def save_history(self, message):
+        self.history.append(message)
+
+    def show_history(self):
+        print("\nИстория чата:")
+        for idx, msg in enumerate(self.history, 1):
+            print(f"{idx}. {msg}")
