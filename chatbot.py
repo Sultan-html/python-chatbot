@@ -40,3 +40,28 @@ class ChatBot:
         print("\nИстория чата:")
         for idx, msg in enumerate(self.history, 1):
             print(f"{idx}. {msg}")
+def main():
+    user_name = input("Как тебя зовут? ")
+    bot = ChatBot(user_name)
+    bot.greet()
+    
+    while True:
+        try:
+            user_input = input(f"{user_name}: ")
+            response = bot.process_input(user_input)
+            print(f"Бот: {response}")
+            
+            if user_input.lower() in ["пока", "выход", "до свидания"]:
+                break
+            
+            bot.save_history(f"Пользователь: {user_input}")
+            bot.save_history(f"Бот: {response}")
+        
+        except Exception as e:
+            print(f"Произошла ошибка: {e}")
+            break
+    
+    bot.show_history()
+
+if __name__ == "__main__":
+    main()
