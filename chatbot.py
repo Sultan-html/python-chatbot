@@ -1,3 +1,5 @@
+import random
+
 class ChatBot:
     def __init__(self, name):
         self.name = name
@@ -17,6 +19,9 @@ class ChatBot:
         
         if "что делаешь" in user_input.lower():
             return "Я болтаю с тобой, это весело!"
+        
+        if "что ты можешь" in user_input.lower():
+            return "Я могу болтать с тобой и показывать тебе свои настроения!"
         
         return self.random_response()
 
@@ -40,6 +45,7 @@ class ChatBot:
         print("\nИстория чата:")
         for idx, msg in enumerate(self.history, 1):
             print(f"{idx}. {msg}")
+
 def main():
     user_name = input("Как тебя зовут? ")
     bot = ChatBot(user_name)
